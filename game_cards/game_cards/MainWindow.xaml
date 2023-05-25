@@ -1,0 +1,103 @@
+﻿<Window x:Class="game_cards.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:game_cards"
+        mc:Ignorable="d"
+        Title="Меню" Height="900" Width="1600"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"  
+        Icon="Resource/icon.png"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}" x:Key="ButtonMenu">
+            <Setter Property="Background" Value="#2e333a"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Constantia"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#FF707070" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>    
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="ButtonExit">
+            <Setter Property="Background" Value="#2e333a"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Constantia"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#FF707070" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type TextBox}" x:Key="TextBox">
+            <Setter Property="Background" Value="#C0C0C0"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Constantia"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#666666">
+
+        <!--// Background Color //-->
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="348*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="47*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="264*"/>
+            <ColumnDefinition Width="855*"/>
+            <ColumnDefinition Width="481*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="chat_textBox" Style="{StaticResource ResourceKey=TextBox}" TextWrapping="Wrap"  Grid.Column="2" Margin="49,10,32,15"  FontSize="25" Grid.Row="1"/>
+        <TextBox x:Name="ChatBox"  Style="{StaticResource ResourceKey=TextBox}"  Grid.Column="2" TextWrapping="Wrap" Padding="0,0,20,0" FontSize="25"   IsReadOnly="True" Margin="49,10,0,20" HorizontalAlignment="Left" Width="400"/>
+        <Button Content="Отправить" Style="{StaticResource ResourceKey=ButtonMenu}" Grid.Column="2" Grid.Row="2" x:Name="SendButton" Click="SendButton_Click"  Margin="49,10,0,10" FontSize="25" HorizontalAlignment="Left" Width="400" />
+        <Frame Content="{Binding MainFrame, Mode=OneWay}" Name="MainFrame" NavigationUIVisibility="Hidden" Grid.RowSpan="3" Margin="10,0,448,0" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+        <Grid Grid.RowSpan="3" Background="#2e333a">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="403*"/>
+                <RowDefinition Height="47*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <TextBlock Height="100" Margin="0,30,0,0"  FontSize="50" Foreground="White"  FontFamily="Constantia" TextAlignment="Center"  Text="Меню"/>
+                <TextBlock Height="80" x:Name="Balance"  Margin="0,20,0,0" FontSize="20" Foreground="White"    TextAlignment="Center"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" TextTrimming="None" />
+                <Button Height="80" x:Name="balance" Click="balance_Click"  Style="{StaticResource ResourceKey=ButtonMenu}" Margin="0,20,0,0" FontSize="23" Content="Пополнение баланса" Visibility="Visible" BorderThickness="0,2,0,1" />
+                <Button Height="80" x:Name="Find" Click="Find_Click" Style="{StaticResource ResourceKey=ButtonMenu}" Margin="0,0,0,0"  FontSize="23" Content="Найти комнату" Visibility="Visible" BorderThickness="0,1,0,1"/>
+                <Button Height="80" x:Name="Create" Click="Create_Click" Style="{StaticResource ResourceKey=ButtonMenu}" Margin="0,0,0,0"  FontSize="23" Content="Создать комнату" Visibility="Visible" BorderThickness="0,1,0,1"/>
+                <Button Height="80" x:Name="Result" Click="Result_Click" Style="{StaticResource ResourceKey=ButtonMenu}" Margin="0,0,0,0"   FontSize="23"  Content="Результаты игр" Visibility="Visible" BorderThickness="0,1,0,2"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1">
+                <Button  Click="Exit_Click"  x:Name="Exit" Style="{StaticResource ResourceKey=ButtonExit}"  Height="94" Margin="0,0,0,0"  FontSize="40" Content="Выход" Visibility="Visible" BorderThickness="0,2,0,2"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</Window>
